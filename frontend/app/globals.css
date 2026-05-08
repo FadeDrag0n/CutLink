@@ -1,0 +1,111 @@
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: #080b1;
+  --surface: #0f1623;
+  --surface2: #161e35;
+  --border: rgba(255,255,255,0.08);
+  --accent: #6c63ff;
+  --accent2: #ff6584;
+  --glow: rgba(108,99,255,0.3);
+  --text: #e8eaf6;
+  --muted: #6b7280;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4 {
+  font-family: 'Syne', sans-serif;
+}
+
+.gradient-text {
+  background: linear-gradient(135deg, #6c63ff, #ff6584, #ffd36e);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.glow-btn {
+  background: linear-gradient(135deg, #6c63ff, #8b5cf6);
+  border: none;
+  border-radius: 12px;
+  color: white;
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 500;
+  padding: 12px 24px;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.glow-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, #8b5cf6, #6c63ff);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.glow-btn:hover::before { opacity: 1; }
+.glow-btn:hover { box-shadow: 0 0 30px var(--glow); transform: translateY(-1px); }
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 24px;
+  transition: border-color 0.3s;
+}
+
+.card:hover { border-color: rgba(108,99,255,0.3); }
+
+.input {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px;
+  padding: 12px 16px;
+  width: 100%;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  outline: none;
+}
+
+.input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(108,99,255,0.15);
+}
+
+.mesh {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background:
+    radial-gradient(ellipse 80% 50% at 20% 20%, rgba(108,99,255,0.12) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 40% at 80% 80%, rgba(255,101,132,0.08) 0%, transparent 60%);
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-up { animation: fadeUp 0.5s ease forwards; }
+.fade-up-2 { animation: fadeUp 0.5s 0.1s ease forwards; opacity: 0; }
+.fade-up-3 { animation: fadeUp 0.5s 0.2s ease forwards; opacity: 0; }
